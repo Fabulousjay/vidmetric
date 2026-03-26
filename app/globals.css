@@ -2,12 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
-
 :root {
-  --font-syne: 'Syne', sans-serif;
-  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-bricolage: 'Bricolage Grotesque', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
   --font-dm-mono: 'DM Mono', monospace;
+}
+
+* {
+  font-family: var(--font-jakarta) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display,
+[class*='font-display'] {
+  font-family: var(--font-bricolage) !important;
+}
+
+.font-mono,
+[class*='font-mono'] {
+  font-family: var(--font-dm-mono) !important;
 }
 
 html {
@@ -15,7 +33,7 @@ html {
 }
 
 body {
-  @apply bg-snow text-ink font-body antialiased;
+  @apply bg-snow text-ink antialiased;
 }
 
 .dark body {
@@ -25,6 +43,10 @@ body {
 @layer utilities {
   .label-caps {
     @apply text-xs font-semibold tracking-widest uppercase text-fog;
+  }
+
+  .section-title {
+    @apply font-display text-base font-semibold text-ink dark:text-chalk;
   }
 
   .card {

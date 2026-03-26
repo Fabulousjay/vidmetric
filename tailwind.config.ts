@@ -10,9 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-syne)"],
-        body: ["var(--font-dm-sans)"],
-        mono: ["var(--font-dm-mono)"]
+        display: ["var(--font-bricolage)"],
+        body: ["var(--font-jakarta)"],
+        mono: ["var(--font-dm-mono)", "monospace"]
       },
       colors: {
         snow: "#FAFAFA",
