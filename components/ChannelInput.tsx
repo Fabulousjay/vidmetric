@@ -7,7 +7,7 @@ import { Search, AlertCircle } from "lucide-react";
 const PLACEHOLDER = "https://www.youtube.com/@MrBeast";
 
 const isValidYouTubeUrl = (value: string): boolean => {
-  return /youtube\.com\/((@|c\/|user\/|channel\/)[\w.-]+)/.test(value.trim());
+  return /youtube\.com\/(@[\w.-]+|c\/[\w.-]+|user\/[\w.-]+|channel\/UC[\w-]{22})/.test(value.trim());
 };
 
 export default function ChannelInput() {
