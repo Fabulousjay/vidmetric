@@ -56,32 +56,55 @@ export async function resolveChannelId(channelUrl: string): Promise<string> {
 
   const handleMatch = cleaned.match(/youtube\.com\/@([^/?&#]+)/);
   if (handleMatch) {
-    const response = await ytFetch(
-      `/channels?part=id&forHandle=${encodeURIComponent('@' + handleMatch[1])}`,
+    const handle = handleMatch[1];
+
+    const handleRes = await ytFetch(
+      `/channels?part=id&forHandle=${encodeURIComponent('@' + handle)}`
     );
-    const data = await response.json();
-    const channelId = data.items?.[0]?.id;
-    if (channelId) return channelId;
+    const handleData = await handleRes.json();
+    const directId = handleData.items?.[0]?.id;
+    if (directId) return directId;
+
+    const searchRes = await ytFetch(
+      `/search?part=snippet&type=channel&q=${encodeURIComponent(handle)}&maxResults=1`
+    );
+    const searchData = await searchRes.json();
+    const searchId = searchData.items?.[0]?.snippet?.channelId;
+    if (searchId) return searchId;
   }
 
   const customMatch = cleaned.match(/youtube\.com\/c\/([^/?&#]+)/);
   if (customMatch) {
-    const response = await ytFetch(
-      `/channels?part=id&forUsername=${encodeURIComponent(customMatch[1])}`,
+    const customRes = await ytFetch(
+      `/channels?part=id&forUsername=${encodeURIComponent(customMatch[1])}`
     );
-    const data = await response.json();
-    const channelId = data.items?.[0]?.id;
-    if (channelId) return channelId;
+    const customData = await customRes.json();
+    const customId = customData.items?.[0]?.id;
+    if (customId) return customId;
+
+    const searchRes = await ytFetch(
+      `/search?part=snippet&type=channel&q=${encodeURIComponent(customMatch[1])}&maxResults=1`
+    );
+    const searchData = await searchRes.json();
+    const searchId = searchData.items?.[0]?.snippet?.channelId;
+    if (searchId) return searchId;
   }
 
   const userMatch = cleaned.match(/youtube\.com\/user\/([^/?&#]+)/);
   if (userMatch) {
-    const response = await ytFetch(
-      `/channels?part=id&forUsername=${encodeURIComponent(userMatch[1])}`,
+    const userRes = await ytFetch(
+      `/channels?part=id&forUsername=${encodeURIComponent(userMatch[1])}`
     );
-    const data = await response.json();
-    const channelId = data.items?.[0]?.id;
-    if (channelId) return channelId;
+    const userData = await userRes.json();
+    const userId = userData.items?.[0]?.id;
+    if (userId) return userId;
+
+    const searchRes = await ytFetch(
+      `/search?part=snippet&type=channel&q=${encodeURIComponent(userMatch[1])}&maxResults=1`
+    );
+    const searchData = await searchRes.json();
+    const searchId = searchData.items?.[0]?.snippet?.channelId;
+    if (searchId) return searchId;
   }
 
   throw new Error('Invalid YouTube channel URL');

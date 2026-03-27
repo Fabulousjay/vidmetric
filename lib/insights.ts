@@ -11,7 +11,7 @@ export function generateInsights(videos: VideoStats[]): Insight[] {
 
   if (videos.length === 0) return insights;
 
-  // Average engagement
+
   const avgEngagement =
     videos.reduce((sum, v) => sum + v.engagementRate, 0) / videos.length;
 
@@ -29,7 +29,7 @@ export function generateInsights(videos: VideoStats[]): Insight[] {
     });
   }
 
-  // Top performing video
+
   const topVideo = videos.reduce((prev, current) =>
     prev.performanceScore > current.performanceScore ? prev : current,
   );
@@ -40,7 +40,7 @@ export function generateInsights(videos: VideoStats[]): Insight[] {
     description: `"${topVideo.title}" has the highest performance score.`,
   });
 
-  // Upload frequency
+
   const sortedVideos = [...videos].sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
@@ -68,7 +68,7 @@ export function generateInsights(videos: VideoStats[]): Insight[] {
     }
   }
 
-  // Shorts performance
+
   const shorts = videos.filter((v) => v.isShort);
   const regular = videos.filter((v) => !v.isShort);
 
