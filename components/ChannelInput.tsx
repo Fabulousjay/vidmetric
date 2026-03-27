@@ -1,43 +1,47 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Search, AlertCircle } from "lucide-react";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Search, AlertCircle } from 'lucide-react';
 
-const PLACEHOLDER = "https://www.youtube.com/@MrBeast";
+const PLACEHOLDER = 'https://www.youtube.com/@MrBeast';
 
 const isValidYouTubeUrl = (value: string): boolean => {
-  return /youtube\.com\/(@[\w.-]+|c\/[\w.-]+|user\/[\w.-]+|channel\/UC[\w-]{22})/.test(value.trim());
+  return /youtube\.com\/(@[\w.-]+|c\/[\w.-]+|user\/[\w.-]+|channel\/UC[\w-]{22})/.test(
+    value.trim(),
+  );
 };
 
 export default function ChannelInput() {
   const router = useRouter();
-  const [url, setUrl]       = useState("");
-  const [error, setError]   = useState("");
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleAnalyze = () => {
     const trimmed = url.trim();
     if (!trimmed) {
-      setError("Please paste a YouTube channel URL.");
+      setError('Please paste a YouTube channel URL.');
       return;
     }
     if (!isValidYouTubeUrl(trimmed)) {
-      setError("That doesn't look like a valid YouTube channel URL. Try using the @handle format.");
+      setError(
+        "That doesn't look like a valid YouTube channel URL. Try using the @handle format.",
+      );
       return;
     }
-    setError("");
+    setError('');
     setLoading(true);
     router.push(`/analyze?url=${encodeURIComponent(trimmed)}`);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") handleAnalyze();
+    if (event.key === 'Enter') handleAnalyze();
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(event.target.value);
-    if (error) setError("");
+    if (error) setError('');
   };
 
   return (
@@ -56,7 +60,7 @@ export default function ChannelInput() {
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder={PLACEHOLDER}
-            className="input-base pl-10"
+            className="input-base !pl-[36px]"
             disabled={loading}
             aria-label="YouTube channel URL input"
           />
@@ -65,9 +69,8 @@ export default function ChannelInput() {
         <button
           onClick={handleAnalyze}
           disabled={loading}
-          className="btn-primary shrink-0"
-        >
-          {loading ? "Loading..." : "Analyze"}
+          className="btn-primary shrink-0">
+          {loading ? 'Loading...' : 'Analyze'}
         </button>
       </div>
 

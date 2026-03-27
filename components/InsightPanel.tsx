@@ -35,7 +35,7 @@ export default function InsightPanel({ videos }: InsightPanelProps) {
           className="text-forest dark:text-grove"
           strokeWidth={2}
         />
-        <h2 className="section-title">AI-Generated Insights</h2>
+        <h2 className="section-title">Insights</h2>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

@@ -12,6 +12,7 @@ export interface VideoStats {
   performanceScore: number;
   performanceLabel: 'Excellent' | 'Good' | 'Average' | 'Poor';
   isShort: boolean;
+  spiked:boolean;
   badges: Badge[];
   daysSince: number;
 }
