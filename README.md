@@ -1,6 +1,6 @@
 # VidMetrics
 
-YouTube competitor intelligence tool. Paste any channel URL and instantly see which videos are performing best, why they are winning, and how the channel stacks up against a competitor.
+This was given to me as a challenge. YouTube competitor intelligence tool. Paste any channel URL and instantly see which videos are performing best, why they are winning, and how the channel stacks up against a competitor.
 
 Built as a 4-day product challenge. 
 
